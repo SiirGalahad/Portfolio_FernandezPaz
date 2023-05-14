@@ -29,7 +29,8 @@
               "Portfolio_Alejo/node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
-              "Portfolio_Alejo/node_modules/bootstrap/dist/js/bootstrap.js"
+              "Portfolio_Alejo/node_modules/bootstrap/dist/css/bootstrap.js"
+              
             ]
           },
           "configurations": {
