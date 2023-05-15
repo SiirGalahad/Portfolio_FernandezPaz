@@ -1,21 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { Skill } from 'src/app/model/skill';
+import { SkillService } from 'src/app/service/skill.service';
+import { TokenService } from 'src/app/service/token.service';
 
-import { HysComponent } from './hys.component';
+@Component({
+  selector: 'app-hys',
+  templateUrl: './hys.component.html',
+  styleUrls: ['./hys.component.css']
+})
+export class HysComponent implements OnInit {
+  skill: Skill[] = [];
 
-describe('HysComponent', () => {
-  let component: HysComponent;
-  let fixture: ComponentFixture<HysComponent>;
+  constructor(private skillS: SkillService, private tokenService: TokenService) { }
+  isLogged = false;
+  
+  ngOnInit(): void {
+    this.cargarSkills();
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+  }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HysComponent]
-    });
-    fixture = TestBed.createComponent(HysComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  cargarSkills(): void{
+    this.skillS.lista().subscribe(
+      data => {
+        this.skill = data;
+      }
+    )
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  delete(id: number){
+    if(id != undefined){
+      this.skillS.delete(id).subscribe(
+        data => {
+          this.cargarSkills();
+        }, err => {
+          alert("No se pudo borrar la skill");
+        }
+      )
+    }
+  }
+}
