@@ -25,6 +25,7 @@ import { EditExperienciaComponent } from './components/experiencia/edit-experien
 import { NeweducacionComponent } from './components/educacion/neweducacion.component';
 import { EditeducacionComponent } from './components/educacion/editeducacion.component';
 import { CommonModule } from '@angular/common';
+
 import { EditSkillComponent } from './components/hys/edit-skill.component';
 import { NewSkillComponent } from './components/hys/new-skill.component';
 @NgModule({
